@@ -2,13 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private Item itemPrefab;
     [SerializeField] private RectTransform contentPanel;
+    [SerializeField] private MouseFollower mouseFollower;
+
 
     List<Item> listOfItems = new List<Item>();
+
+    public Sprite image;
+    public int quantity;
+
+    private void Awake()
+    {
+        Hide();
+        mouseFollower.Toggle(false);
+    }
 
     public void InitializeInventoryUI(int inventorysize)
     {
@@ -32,7 +44,7 @@ public class Inventory : MonoBehaviour
 
     private void HandleEndDrag(Item obj)
     {
-        
+        mouseFollower.Toggle(false);
     }
 
     private void HandleSwap(Item obj)
@@ -42,17 +54,20 @@ public class Inventory : MonoBehaviour
 
     private void HandleBeginDrag(Item obj)
     {
-        
+        mouseFollower.Toggle(true);
+        mouseFollower.SetData(image, quantity);
     }
 
-    private void HandleItemSelection(Item obj)
+    private void HandleItemSelection(Item item)
     {
-        Debug.Log(obj.name);
+        listOfItems[0].Select();
     }
 
     public void Show()
     {
         gameObject.SetActive(true);
+
+        listOfItems[0].SetData(image, quantity);
     }
 
     public void Hide()
