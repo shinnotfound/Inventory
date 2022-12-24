@@ -50,7 +50,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void UpdateDescription(int itemIndex, Sprite itemImage, string name, string Description)
+    internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string Description)
     {
         DeselectAllItems();
         listOfItems[itemIndex].Select();

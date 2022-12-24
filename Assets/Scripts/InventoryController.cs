@@ -50,11 +50,11 @@ public class InventoryController : MonoBehaviour
 
     private void HandleDescriptionRequest(int itemIndex)
     {
-       //InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
-        //if (inventoryItem.IsEmpty)
-          //  return;
-        //ItemSO item = inventoryItem.item;
-        //inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.name, item.Description);
+       InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+        if (inventoryItem.IsEmpty)
+            return;
+        ItemSO item = inventoryItem.item;
+        inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.name, item.Description);
         
     }
 
