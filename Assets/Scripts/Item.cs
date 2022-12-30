@@ -16,7 +16,7 @@ public class Item : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEnd
 
     private bool empty = true;
 
-    
+    public bool DoubleClick;
 
     public void Awake()
     {
@@ -78,8 +78,14 @@ public class Item : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEnd
         }
         else
         {
+            if (pointerData.clickCount >= 2)
+            {
+                Debug.Log("Clicked Twice.");
+                DoubleClick = true;
+            }
             OnClicked?.Invoke(this);
         }
     }
+
 
 }

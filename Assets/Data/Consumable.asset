@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Consumable
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
-  <MaxStackSize>k__BackingField: 99
+  <MaxStackSize>k__BackingField: 16
   <Name>k__BackingField: Apple
   <Description>k__BackingField: 'Restores health.
 

@@ -9,8 +9,9 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] private InventorySO inventoryData;
 
-    public List<InventoryItem> initialItems = new List<InventoryItem>();
+    [SerializeField] private Item itemUI;
 
+    public List<InventoryItem> initialItems = new List<InventoryItem>();
 
     private void Start()
     {
@@ -50,12 +51,15 @@ public class InventoryController : MonoBehaviour
 
     private void HandleDescriptionRequest(int itemIndex)
     {
-       InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+        InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
         if (inventoryItem.IsEmpty)
             return;
         ItemSO item = inventoryItem.item;
         inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.name, item.Description);
-        
+        if (itemUI.DoubleClick == true)
+        {
+            Debug.Log($"{item.Description}");
+        }
     }
 
     private void HandleSwapItems(int itemIndex_1, int itemIndex_2)
