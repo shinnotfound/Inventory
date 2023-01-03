@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Item itemPrefab;
     [SerializeField] private RectTransform contentPanel;
     [SerializeField] private MouseFollower mouseFollower;
+    [SerializeField] private ActionPanel actionPanel;
 
 
     List<Item> listOfItems = new List<Item>();
@@ -58,7 +59,12 @@ public class Inventory : MonoBehaviour
 
     private void HandleShowItemActions(Item item)
     {
-        
+        int index = listOfItems.IndexOf(item);
+        if (index == -1)
+        {
+            return;
+        }
+        OnItemActionRequested?.Invoke(index);
     }
 
     private void HandleEndDrag(Item item)
@@ -115,7 +121,23 @@ public class Inventory : MonoBehaviour
         ResetDraggedItem();
     }
 
-    private void ResetSelection()
+    public void AddAction(string actionName, Action performAction)
+    {
+        actionPanel.AddBTN(actionName, performAction);
+    }
+
+    public void ShowActionPanel(int itemIndex)
+    {
+        actionPanel.Toggle(true);
+        actionPanel.transform.position = listOfItems[itemIndex].transform.position;
+    }
+
+    public void HideActionPanel(int itemIndex)
+    {
+        actionPanel.Toggle(false);
+    }
+
+    public void ResetSelection()
     {
         DeselectAllItems();
     }
@@ -126,6 +148,7 @@ public class Inventory : MonoBehaviour
         {
             item.Deselect();
         }
+        actionPanel.Toggle(false);
     }
 
     private void ResetDraggedItem()

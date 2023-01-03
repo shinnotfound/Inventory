@@ -566,8 +566,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 6517717337245018280, guid: 7afcf33c74682ff4eaf567e90c6c38b2, type: 3}
   contentPanel: {fileID: 3210466088050615046}
   mouseFollower: {fileID: 0}
-  image: {fileID: 0}
-  quantity: 0
+  actionPanel: {fileID: 0}
 --- !u!1 &3210466088050615045
 GameObject:
   m_ObjectHideFlags: 0
